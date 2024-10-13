@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 
 const JWT_SECRET = 'suparnavishu';
 
-// Create a User using: POST "/api/auth/createuser". No login reqired
+// Route 1: Create a User using: POST "/api/auth/createuser". No login reqired
 router.post('/createuser',[
     body('name','Enter a valid name').isLength({min : 3}),
     body('email','enter a valid email address').isEmail(),
@@ -36,7 +36,7 @@ router.post('/createuser',[
       })
      } catch (error) {
       console.error(error.message);
-      res.status(500).send("Some error occured");
+      res.status(500).send("Internal Server Error");
      }
      
     //  .then(user=>res.json(user)).catch(err=>{console.log(err)
@@ -48,9 +48,49 @@ router.post('/createuser',[
       }
      }
      const authToken = jwt.sign(data,JWT_SECRET);
-     console.log(jwtData);
+     console.log(authToken);
      //res.json(user)
-     res.json(authToken);
+     res.json({authToken});
+})
+
+
+// Route 2 : Authenticate a User using: POST "/api/auth/login". No login reqired
+router.post('/login',[
+
+    body('email','enter a valid email address').isEmail(),
+    body('password','password cannot be blank').exists()
+  
+],async (req,res)=>{
+
+  // If there are errors, return Bad request and error message
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  const {email,password} = req.body;
+try {
+  
+  let user = await User.findOne({email});
+  if(!user)
+  {
+    return res.status(400).json({error :"Please try to login with correct credentials"});
+  }
+
+  const passwordCompare = await bcrypt.compare(password,user.password);
+  if(!passwordCompare){
+    return res.status(400).json({error :"Please try to login with correct credentials"});
+  }
+  const data = {
+    user : {
+      id : user.id
+    }
+   }
+   const authToken = jwt.sign(data,JWT_SECRET);
+   res.json({authToken});
+} catch (error) {
+  console.error(error.message);
+  res.status(500).send("Internal Server Error");
+}
 })
 
 

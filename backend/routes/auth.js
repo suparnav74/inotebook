@@ -93,5 +93,20 @@ try {
 }
 })
 
+// Route 3 : Get loggedin  User details using: POST "/api/auth/getuser". No login reqired
+router.post('/login',[
 
+  body('email','enter a valid email address').isEmail(),
+  body('password','password cannot be blank').exists()
+
+],async (req,res)=>{
+try {
+
+  let userId ="todo";
+  const user = await User.findById(userId).select("-password")
+} catch (error) {
+  console.error(error.message);
+  res.status(500).send("Internal Server Error");
+}
+})
 module.exports = router

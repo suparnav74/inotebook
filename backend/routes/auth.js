@@ -5,6 +5,7 @@ const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const user = require('../models/User');
 const jwt = require('jsonwebtoken');
+const fetchuser = require('../middleware/fetchUser');
 
 const JWT_SECRET = 'suparnavishu';
 
@@ -93,17 +94,15 @@ try {
 }
 })
 
-// Route 3 : Get loggedin  User details using: POST "/api/auth/getuser". No login reqired
-router.post('/login',[
-
-  body('email','enter a valid email address').isEmail(),
-  body('password','password cannot be blank').exists()
-
-],async (req,res)=>{
+// Route 3 : Get loggedin  User details using: POST "/api/auth/getuser". Login reqired
+router.post('/getuser',fetchuser,async (req,res)=>{
 try {
 
-  let userId ="todo";
+  let userId =req.user.id;
   const user = await User.findById(userId).select("-password")
+  console.log(user)
+  res.send(user);
+
 } catch (error) {
   console.error(error.message);
   res.status(500).send("Internal Server Error");

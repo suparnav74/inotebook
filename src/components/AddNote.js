@@ -10,6 +10,7 @@ const AddNote = () => {
     const handleClick=(e)=>{
         e.preventDefault()
         addNote(note.title,note.description,note.tag)
+        setnote({title:"",description:"",tag:""})
     }
 
     const onChange = (e)=>{
@@ -27,8 +28,8 @@ const AddNote = () => {
             <input
               type="text"
               className="form-control"
-              id="title" name='title'
-              aria-describedby="emailHelp" onChange={onChange}
+              id="title" name='title' value={note.title}
+              aria-describedby="emailHelp" onChange={onChange} minLength={5} required
             />
           </div>
           <div className="mb-3">
@@ -37,8 +38,8 @@ const AddNote = () => {
             </label>
             <input
               type="text"
-              className="form-control"
-              id="description" name='description' onChange={onChange}
+              className="form-control"value={note.description}
+              id="description" name='description' onChange={onChange} minLength={5} required
             />
           </div>
           <div className="mb-3">
@@ -47,17 +48,14 @@ const AddNote = () => {
             </label>
             <input
               type="text"
-              className="form-control"
+              className="form-control" value={note.tag}
               id="tag" name='tag' onChange={onChange}
             />
           </div>
-          <button type="submit" className="btn btn-primary" onClick={handleClick}>
+          <button type="submit" disabled={note.title.length<5||note.description.length<5} className="btn btn-primary" onClick={handleClick}>
             Add Note
           </button>
         </form>
-      </div>
-      <div className="container my-3" style={{textAlign: "left"}}>
-        <h2>Your Notes</h2>
       </div>
     </div>
   )

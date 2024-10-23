@@ -2,13 +2,23 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import noteContext from "../context/notes/noteContext";
 import NoteItem from './NoteItem';
 import AddNote from './AddNote';
+import { useNavigate } from 'react-router-dom';
 
 const Notes = (props) => {
   const context = useContext(noteContext);
   const { notes, getNote, editNote } = context;
+  let navigate =useNavigate()
   useEffect(() => {
-    getNote()
-  }, [])
+    if(localStorage.getItem('token'))
+    {
+      getNote()
+    }
+    else
+    {
+      navigate("/login")
+    }
+    // eslint-disable-next-line
+  },[])
 
  const {showAlert}=props;
   const updateNote = (currentNote) => {
@@ -98,10 +108,9 @@ const Notes = (props) => {
         {notes.length === 0 && "No notes to display"}
       </div>
       <div className='row my-3' style={{ textAlign: "justify" }}>
-
-        {notes.map((notes) => {
+        {Array.isArray(notes) ? notes.map((notes) =>{
           return <NoteItem key={notes._id} updateNote={updateNote} showAlert={showAlert} note={notes} />;
-        })}
+        }) : <p>No notes available.</p>}
       </div>
     </>
   )

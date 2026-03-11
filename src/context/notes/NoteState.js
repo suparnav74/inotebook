@@ -38,7 +38,7 @@ const NoteState = (props) => {
 
     //Logic for client side
     if (Array.isArray(notes)) {
-      setnotes(note);
+      setnotes([...notes, note]);
     } else {
       setnotes(notes.concat(note));
     }

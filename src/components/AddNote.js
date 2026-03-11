@@ -12,6 +12,7 @@ const AddNote = (props) => {
         addNote(note.title,note.description,note.tag)
         props.showAlert("Note Added Sucessfully","success");
         setnote({title:"",description:"",tag:""})
+        
     }
 
     const onChange = (e)=>{

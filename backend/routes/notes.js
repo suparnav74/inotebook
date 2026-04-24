@@ -1,5 +1,5 @@
 const express = require('express');
-const fetchuser = require('../middleware/fetchUser');
+const fetchuser = require('../middleware/fetchuser');
 const Notes = require('../models/Notes');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
@@ -57,7 +57,7 @@ router.post('/addnote',fetchuser,[
          let note = await Notes.findById(req.params.id);
          if(!note){ return res.status(404).send("Not Found")}
 
-         if(note.user.toString() != req.user.id)
+         if(note.user.toString() !== req.user.id)
          {
             return res.status(404).send("Not Allowed")
          }
@@ -80,7 +80,7 @@ router.post('/addnote',fetchuser,[
          if(!note){ return res.status(404).send("Not Found")}
 
          // Allow deletion only if user owns this note
-         if(note.user.toString() != req.user.id)
+         if(note.user.toString() !== req.user.id)
          {
             return res.status(404).send("Not Allowed")
          }

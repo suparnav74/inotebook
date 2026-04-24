@@ -34,7 +34,7 @@ const Login = (props) => {
 
 
   return (
-    <div className='mt-3'>
+    <div className='mt-3 container' style={{ textAlign: 'justify' }}>
       <h2>Login to continue to iNotebook</h2>
       <div className='container' style={{ textAlign: 'justify' }}>
         <form onSubmit={handleSubmit}>

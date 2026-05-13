@@ -34,9 +34,48 @@ const Login = (props) => {
 
 
   return (
-    <div className='mt-3 container' style={{ textAlign: 'justify' }}>
-      <h2>Login to continue to iNotebook</h2>
-      <div className='container' style={{ textAlign: 'justify' }}>
+    <div className='container-fluid d-flex justify-content-center align-items-center' style={{ textAlign: 'justify' }}>
+      <div
+        className="card border-0 shadow-sm p-4"
+        style={{
+          width: "100%",
+          maxWidth: "700px",
+          background: "rgba(255,255,255,0.85)",
+          borderRadius: "20px",
+          backdropFilter: "blur(5px)",
+        }}
+      >
+        <div className="text-center mb-4">
+          <h1
+            style={{
+              fontSize: "3rem",
+              fontWeight: "700",
+              letterSpacing: "2px",
+            }}
+          >
+            iNOTEBOOK
+          </h1>
+
+          <p
+            style={{
+              fontSize: "18px",
+              fontWeight: "600",
+              marginBottom: "5px",
+            }}
+          >
+            Your notes on cloud ☁️
+          </p>
+
+          <p
+            style={{
+              fontSize: "20px",
+              fontStyle: "italic",
+              color: "#333",
+            }}
+          >
+            Login to continue using iNotebook
+          </p>
+        </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">Email address</label>
@@ -46,10 +85,25 @@ const Login = (props) => {
             <label htmlFor="password" className="form-label">Password</label>
             <input type="password" className="form-control" id="password" value={credentials.password} onChange={onChange} name='password' />
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <div className="text-center">
+            <button type="submit" className="btn btn-primary">Submit</button>
+          </div>
+          <div className="text-center mt-4">
+            <span style={{ color: "#555" }}>
+              Don't have an account?
+            </span>
+
+            <a
+              href="/signup"
+              className="ms-2 text-primary fw-semibold text-decoration-none"
+            >
+              SignUp
+            </a>
+          </div>
         </form>
       </div>
     </div>
+
   )
 }
 

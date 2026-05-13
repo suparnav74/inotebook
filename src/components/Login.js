@@ -34,7 +34,15 @@ const Login = (props) => {
 
 
   return (
-    <div className='container-fluid d-flex justify-content-center align-items-center' style={{ textAlign: 'justify' }}>
+    <div className='container-fluid d-flex justify-content-center align-items-center' style={{
+      height: "100vh",
+      overflow: "hidden",
+      backgroundImage: "url('/inotebookbg.png')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      textAlign: 'justify'
+    }}>
       <div
         className="card border-0 shadow-sm p-4"
         style={{

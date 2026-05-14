@@ -42,13 +42,10 @@ const Signup = (props) => {
             textAlign: 'justify'
         }}>
             <div
-                className="card border-0 shadow-sm p-4"
+                className="container"
                 style={{
                     width: "100%",
                     maxWidth: "700px",
-                    background: "rgba(255,255,255,0.85)",
-                    borderRadius: "20px",
-                    backdropFilter: "blur(5px)",
                 }}
             >
                 <div className="text-center mb-4">

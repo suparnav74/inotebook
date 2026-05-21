@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Signup = (props) => {
     const [credentials, setcredentials] = useState({ name: "", email: "", password: "", cpassword: "" })
@@ -95,12 +95,12 @@ const Signup = (props) => {
                             Already have an account?
                         </span>
 
-                        <a
-                            href="/login"
+                        <Link
+                            to="/login"
                             className="ms-2 text-primary fw-semibold text-decoration-none"
                         >
                             Login
-                        </a>
+                        </Link>
                     </div>
                 </form>
             </div>

@@ -99,7 +99,7 @@ const Login = (props) => {
             </span>
 
             <a
-              href="/Signup"
+              href="/signup"
               className="ms-2 text-primary fw-semibold text-decoration-none"
             >
               SignUp

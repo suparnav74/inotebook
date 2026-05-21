@@ -7,7 +7,7 @@ const NavBar = () => {
   let location = useLocation();
   let navigate =useNavigate();
   useEffect(() => {
-     console.log(location)
+     //console.log(location)
   }, [location]);
 
   const handleLogout =()=>{
